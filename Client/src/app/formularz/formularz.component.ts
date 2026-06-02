@@ -40,7 +40,7 @@ export class FormularzComponent {
                 this.wczytywanie = false;
               }, error: (err) => {
                 console.error(err);
-                alert("Wystąpił błąd podczas pobierania obiektu.");
+                alert("Błąd");
               }
             });
         } else {
@@ -84,11 +84,11 @@ export class FormularzComponent {
       if(res) {
         this.router.navigateByUrl("/gry");
       } else {
-        alert("Wystąpił błąd podczas próby zapisu zmian.");
+        alert("Błąd");
         this.wczytywanie = false;
       }
     }, error: (err) => {
-      alert("Wystąpił błąd podczas próby zapisu zmian.");
+      alert("Błąd");
         this.wczytywanie = false;
     }})
   }

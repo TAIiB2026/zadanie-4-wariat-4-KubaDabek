@@ -1,22 +1,39 @@
-<table>
+<div>
+    <input
+      type="text"
+      placeholder="Filtruj po tytule..."
+      [(ngModel)]="filtrTytul"
+      (input)="odswiezListe()"
+    />
+  </div>
+  
+  <table>
     <thead>
-        <tr>
-            <th>ID</th>
-            <th>Tytuł</th>
-            <th>Cena</th>
-            <th>Data premiery</th>
-            <th>Edycja</th>
-        </tr>
+      <tr>
+        <th>ID</th>
+        <th>Tytuł</th>
+        <th>Cena</th>
+        <th>Data premiery</th>
+        <th>Edycja</th>
+        <th>Usuń</th>
+      </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let d of (data$ | async)">
-            <td>{{d.id}}</td>
-            <td>{{d.tytul}}</td>
-            <td>{{d.cena | currency:'PLN'}}</td>
-            <td>{{d.dataPremiery | date:"shortDate"}}</td>
-            <td><a [routerLink]="d.id + ''">Przejdź do edycji</a></td>
-        </tr>
+      <tr *ngFor="let d of (data$ | async)">
+        <td>{{d.id}}</td>
+        <td>{{d.tytul}}</td>
+        <td>{{d.cena | currency:'PLN'}}</td>
+        <td>{{d.dataPremiery | date:"shortDate"}}</td>
+        <td><a [routerLink]="d.id + ''">Przejdź do edycji</a></td>
+        <td><button (click)="usun(d.id)">Usuń</button></td>
+      </tr>
     </tbody>
-</table>
-
-<a routerLink="/dodawanie">Przejdź do dodawania</a>
+  </table>
+  
+  <div>
+    <button (click)="strona = strona - 1; odswiezListe()" [disabled]="strona <= 1">&#8592; Poprzednia</button>
+    <span> Strona {{strona}} </span>
+    <button (click)="strona = strona + 1; odswiezListe()">Następna &#8594;</button>
+  </div>
+  
+  <a routerLink="/dodawanie">Przejdź do dodawania</a>

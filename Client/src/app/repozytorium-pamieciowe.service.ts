@@ -33,10 +33,10 @@ export class RepozytoriumPamiecioweService implements GetDataInterface, FormSubm
     return of(false);
   }
 
-  Get(): Observable<GraClass[]> {
+  Get(strona?: number, rozmiarStrony?: number, tytul?: string): Observable<GraClass[]> {
     const kopia = this.data.map(x => new GraClass(x.id, x.tytul, x.cena, x.dataPremiery));
     return of(kopia);
-  }
+}
 
   GetByID(id: number): Observable<GraClass> {
     const obj = this.data.find(x => x.id === id);
@@ -45,6 +45,7 @@ export class RepozytoriumPamiecioweService implements GetDataInterface, FormSubm
       return of(kopia);
     }
 
-    throw new Error("Nie znaleziono obiektu.");
+    throw new Error("Brak danych");
   }
+  
 }
